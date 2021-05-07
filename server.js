@@ -10,7 +10,7 @@ http.createServer((request, response) => {
 
 	fs.appendFile(
 		'log.txt',
-		'URL: ' + baseURL + '\nTimestamp: ' + new Date() + '\n\n',
+		'URL: ' + reqURL.href + '\nTimestamp: ' + new Date() + '\n\n',
 		(err) => err ? console.log(err) : console.log('Added to log.')
 	);
 
