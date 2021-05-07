@@ -1,0 +1,25 @@
+{
+  "name": "bugflix",
+  "version": "1.0.0",
+  "description": "The well known movie database. One of the best, except a couple of bugs from time to time.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benedictbelz/movie_api.git"
+  },
+  "author": "Benedict Belz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benedictbelz/movie_api/issues"
+  },
+  "homepage": "https://github.com/benedictbelz/movie_api#readme"
+}
