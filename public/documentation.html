@@ -1,34 +1,61 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 	<head>
-		<meta charset='utf-8'>
+		<meta charset="utf-8" />
 		<title>Bugflix</title>
-        
+		<link
+			rel="stylesheet"
+			href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css"
+		/>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+		<script>hljs.highlightAll();</script>
 	</head>
 	<body>
-        <style type="text/css">
-            
-            table {
-                border-collapse: collapse;
-            }
+		<style type="text/css">
+			table {
+				border-collapse: collapse;
+			}
 
-            table, th, td {
-                border: 1px solid black;
-            }
+			thead {
+				background: #f4f4f4;
+			}
 
-            th,td {
-                padding: 10px;
-            }
-            
-        </style>
+			table,
+			th,
+			td {
+				border: 1px solid black;
+			}
+
+			th,
+			td {
+				padding: 10px;
+			}
+
+			pre {
+				white-space: pre-line;
+				margin: 1rem 0rem;
+			}
+
+			pre>code{
+				padding: 1rem !important;
+				background: #f4f4f4 !important;
+				font-size: 10px !important;
+				line-height: 1.2rem !important;
+			}
+
+		</style>
 		<h1>Bugflix – API Documentation</h1>
-		<p>The well known movie database. One of the best, except a couple of bugs from time to time.</p>
+		<p>
+			The well known movie database. One of the best, except a couple of
+			bugs from time to time.
+		</p>
 		<div id="table">
 			<table>
 				<thead>
 					<tr>
 						<th>Request</th>
 						<th>URL</th>
+						<th>Query Parameter</th>
 						<th>HTTP Method</th>
 						<th>Request Body</th>
 						<th>Response Body</th>
@@ -36,11 +63,121 @@
 				</thead>
 				<tbody>
 					<tr>
+						<td>Return a list of all movies.</td>
+						<td>/movies</td>
 						<td>–</td>
-                        <td>–</td>
-                        <td>–</td>
-                        <td>–</td>
-                        <td>–</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A JSON holding data about all movies.
+							<pre><code class="javascript">{
+							&nbsp;&nbsp;&nbsp;&nbsp;movies: ['Apokalypse Now','Inception','Children of Men']
+							}</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<td>Return data about a single movie by title.</td>
+						<td>/movies/[name]</td>
+						<td>/movies/:name</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A JSON holding data about the movie.
+							<pre><code>{
+							&nbsp;&nbsp;&nbsp;&nbsp;name: 'Apokalypse Now',
+							&nbsp;&nbsp;&nbsp;&nbsp;descripton: 'A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel who sees himself as a god.',
+							&nbsp;&nbsp;&nbsp;&nbsp;genres: ['Drama','Mystery','War'],
+							&nbsp;&nbsp;&nbsp;&nbsp;director: 'Francis Ford Coppola',
+							&nbsp;&nbsp;&nbsp;&nbsp;image URL: 'apokalypsenow.png'
+							}</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<td>Return data about a genre by title.</td>
+						<td>/genres/[name]</td>
+						<td>/genres/:name</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A JSON holding data about the genre.
+							<pre><code>{
+							&nbsp;&nbsp;&nbsp;&nbsp;name: 'Drama',
+							&nbsp;&nbsp;&nbsp;&nbsp;descripton: 'Drama is a category of narrative fiction intended to be more serious than humorous in tone.'
+							}</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<td>Return data about a director.</td>
+						<td>/directors/[name]</td>
+						<td>/directors/:name</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A JSON holding data about the director.
+						</td>
+					</tr>
+					<tr>
+						<td>Allow new users to register.</td>
+						<td>/users</td>
+						<td>–</td>
+						<td>POST</td>
+						<td>
+							A JSON object holding data about the user to create.
+						</td>
+						<td>
+							A text message that the user has been successfully created.
+						</td>
+					</tr>
+					<tr>
+						<td>Update user information.</td>
+						<td>/users/[name]</td>
+						<td>/users/:name</td>
+						<td>PUT</td>
+						<td>
+							A JSON object holding data about the updated user.
+						</td>
+						<td>
+							A JSON object holding data about the updated user.
+						</td>
+					</tr>
+					<tr>
+						<td>Unregister an existing user.</td>
+						<td>/users/[name]</td>
+						<td>/users/:name/</td>
+						<td>DELETE</td>
+						<td>–</td>
+						<td>
+							A text message that the user has been successfully removed.
+						</td>
+					</tr>
+					<tr>
+						<td>Add a movie to favourites.</td>
+						<td>/users/[name]/favourites/[movie]</td>
+						<td>/users/:name/favourites/:movie</td>
+						<td>POST</td>
+						<td>–</td>
+						<td>
+							A JSON object holding data about the current favourites list.
+						</td>
+					</tr>
+					<tr>
+						<td>Remove a movie from favourites.</td>
+						<td>/users/[name]/favourites/[movie]</td>
+						<td>/users/:name/favourites/:movie</td>
+						<td>DELETE</td>
+						<td>–</td>
+						<td>
+							A JSON object holding data about the current favourites list.
+						</td>
+					</tr>
+					<tr>
+						<td>Get a teapot.</td>
+						<td>/teapot</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A text message with status 418.
+						</td>
 					</tr>
 				</tbody>
 			</table>
