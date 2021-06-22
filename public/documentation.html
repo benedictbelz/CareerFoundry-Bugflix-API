@@ -70,9 +70,17 @@
 						<td>–</td>
 						<td>
 							A JSON holding data about all movies.
-							<pre><code class="javascript">{
-							&nbsp;&nbsp;&nbsp;&nbsp;movies: ['Apokalypse Now','Inception','Children of Men']
-							}</code></pre>
+							<pre><code class="javascript">[
+							&nbsp;&nbsp;&nbsp;&nbsp;{
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": ["60c29ca7275b0753101f0b39"],
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Genre": ["60c29bd1275b0753101f0b32"],
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Director": ["60c29bfc275b0753101f0b36"],
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Title": "Silence of the Lambs",
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ImagePath": "silenceofthelambs.png",
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Featured": true
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+							]</code></pre>
 						</td>
 					</tr>
 					<tr>
@@ -84,11 +92,13 @@
 						<td>
 							A JSON holding data about the movie.
 							<pre><code>{
-							&nbsp;&nbsp;&nbsp;&nbsp;name: 'Apokalypse Now',
-							&nbsp;&nbsp;&nbsp;&nbsp;descripton: 'A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel who sees himself as a god.',
-							&nbsp;&nbsp;&nbsp;&nbsp;genres: ['Drama','Mystery','War'],
-							&nbsp;&nbsp;&nbsp;&nbsp;director: 'Francis Ford Coppola',
-							&nbsp;&nbsp;&nbsp;&nbsp;image URL: 'apokalypsenow.png'
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": ["60c29cb2275b0753101f0b3e"],
+								&nbsp;&nbsp;&nbsp;&nbsp;"Genre": ["60c29bd6275b0753101f0b34"],
+								&nbsp;&nbsp;&nbsp;&nbsp;"Director": ["60c29c01275b0753101f0b38"],
+								&nbsp;&nbsp;&nbsp;&nbsp;"Title": "Inception",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+								&nbsp;&nbsp;&nbsp;&nbsp;"ImagePath": "inception.png",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Featured": true
 							}</code></pre>
 						</td>
 					</tr>
@@ -101,8 +111,9 @@
 						<td>
 							A JSON holding data about the genre.
 							<pre><code>{
-							&nbsp;&nbsp;&nbsp;&nbsp;name: 'Drama',
-							&nbsp;&nbsp;&nbsp;&nbsp;descripton: 'Drama is a category of narrative fiction intended to be more serious than humorous in tone.'
+							&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60c29bd4275b0753101f0b33",
+							&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Drama",
+							&nbsp;&nbsp;&nbsp;&nbsp;"Descripton": "Drama is a category of narrative fiction intended to be more serious than humorous in tone."
 							}</code></pre>
 						</td>
 					</tr>
@@ -114,6 +125,48 @@
 						<td>–</td>
 						<td>
 							A JSON holding data about the director.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60c29bff275b0753101f0b37",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Francis Ford Coppola",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Bio": "Francis Ford Coppola was born in 1939 in Detroit, Michigan, but grew up in a New York suburb in a creative, supportive Italian-American family.",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birth": "1939"
+							}</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<td>Return a list of all users.</td>
+						<td>/users</td>
+						<td>–</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A JSON holding data about all users.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": ["60c29d76275b0753101f0b43"],
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "z00m",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "12345678910",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "z00m@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1993-01-01T00:00:00.000Z",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Favorites": ["60c29005275b0753101f0b2a", "60c29010275b0753101f0b2b", "60c29018275b0753101f0b2c"]
+							}</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<td>Return data about a user.</td>
+						<td>/users/[name]</td>
+						<td>/users/:name</td>
+						<td>GET</td>
+						<td>–</td>
+						<td>
+							A JSON holding data about the user.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60c29d7c275b0753101f0b46",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "charlatan",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "zcharlaz",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "charlatan@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1989-01-01T00:00:00.000Z",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Favorites": ["60c29ca7275b0753101f0b39"]
+							}</code></pre>
 						</td>
 					</tr>
 					<tr>
@@ -123,9 +176,23 @@
 						<td>POST</td>
 						<td>
 							A JSON object holding data about the user to create.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "DonkeyKong",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "banana",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "bananas4ever@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1975-01-01"
+							}</code></pre>
 						</td>
 						<td>
-							A text message that the user has been successfully created.
+							A JSON object holding data about the created user.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60d25db0c988602fe2a2e791",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "DonkeyKong",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "banana",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "bananas4ever@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1975-01-01T00:00:00.000Z",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Favorites": []
+							}</code></pre>
 						</td>
 					</tr>
 					<tr>
@@ -134,14 +201,28 @@
 						<td>/users/:name</td>
 						<td>PUT</td>
 						<td>
-							A JSON object holding data about the updated user.
+							A JSON object holding data about user to update.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "z00m",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "12345678910",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "z00m@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1993-01-01"
+							}</code></pre>
 						</td>
 						<td>
 							A JSON object holding data about the updated user.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60c29d76275b0753101f0b43",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "z00m",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "12345678910",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "z00m@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1993-01-01T00:00:00.000Z"
+								&nbsp;&nbsp;&nbsp;&nbsp;"Favorites": ["60c29005275b0753101f0b2a", "60c29010275b0753101f0b2b", "60c29018275b0753101f0b2c"]
+							}</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<td>Unregister an existing user.</td>
+						<td>Delete an existing user.</td>
 						<td>/users/[name]</td>
 						<td>/users/:name/</td>
 						<td>DELETE</td>
@@ -157,7 +238,15 @@
 						<td>POST</td>
 						<td>–</td>
 						<td>
-							A JSON object holding data about the current favourites list.
+							A JSON object holding data about the current user.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60c29d76275b0753101f0b43",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "z00m",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "12345678910",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "z00m@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1993-01-01T00:00:00.000Z"
+								&nbsp;&nbsp;&nbsp;&nbsp;"Favorites": ["60c29010275b0753101f0b2b", "60c29018275b0753101f0b2c"]
+							}</code></pre>
 						</td>
 					</tr>
 					<tr>
@@ -168,11 +257,20 @@
 						<td>–</td>
 						<td>
 							A JSON object holding data about the current favourites list.
+							<pre><code>{
+								&nbsp;&nbsp;&nbsp;&nbsp;"_id": "60c29d76275b0753101f0b43",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Username": "z00m",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Password": "12345678910",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Email": "z00m@gmail.com",
+								&nbsp;&nbsp;&nbsp;&nbsp;"Birthday": "1993-01-01T00:00:00.000Z"
+								&nbsp;&nbsp;&nbsp;&nbsp;"Favorites": ["60c29018275b0753101f0b2c"]
+							}</code></pre>
 						</td>
 					</tr>
 					<tr>
 						<td>Get a teapot.</td>
 						<td>/teapot</td>
+						<td>–</td>
 						<td>GET</td>
 						<td>–</td>
 						<td>
