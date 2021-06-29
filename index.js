@@ -8,7 +8,8 @@ const Director = Models.Director;
 const Genre = Models.Genre;
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Bugflix', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost:27017/Bugflix', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 app.use(morgan('common'));
