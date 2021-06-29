@@ -1,12 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movie = Models.Movie;
 const User = Models.User;
 const Director = Models.Director;
 const Genre = Models.Genre;
+
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/Bugflix', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
@@ -19,10 +20,19 @@ app.use((err, req, res, next) => {
 	res.status(500).send('Something broke!');
 });
 
-let auth = require('./auth')(app);
+// VALIDATION
+const { check, validationResult } = require('express-validator');
+
+// CROSS ORIGIN RESOURCE SHARING
+const cors = require('cors');
+app.use(cors());
+
+// AUTHENTIFICATION
+const auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
+// HOMEPAGE
 app.get('/', (req, res) => {
 	res.status(200).send('Welcome to Bugflix');
 });
@@ -100,7 +110,17 @@ app.get('/users/:name', passport.authenticate('jwt', { session: false }), (req, 
 });
 
 // POST A NEW USER
-app.post('/users', (req, res) => {
+app.post('/users', 
+	[
+    	check('Username', 'Username is required').isLength({min: 5}),
+    	check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    	check('Password', 'Password is required').not().isEmpty(),
+    	check('Email', 'Email does not appear to be valid').isEmail()
+  	],
+	(req, res) => {
+	let errors = validationResult(req);
+	if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+	let hashedPassword = User.hashPassword(req.body.Password);
 	User.findOne({ Username: req.body.Username })
 		.then(user => {
 			if (user)
@@ -109,7 +129,7 @@ app.post('/users', (req, res) => {
 				User
 					.create({
 						Username: req.body.Username,
-						Password: req.body.Password,
+						Password: hashedPassword,
 						Email: req.body.Email,
 						Birthday: req.body.Birthday
 					})
@@ -127,11 +147,21 @@ app.post('/users', (req, res) => {
 });
 
 // UPDATE AN EXISTING USER
-app.put('/users/:name', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put('/users/:name', 
+	[
+		check('Username', 'Username is required').isLength({min: 5}),
+		check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+		check('Password', 'Password is required').not().isEmpty(),
+		check('Email', 'Email does not appear to be valid').isEmail()
+	],
+	passport.authenticate('jwt', { session: false }), (req, res) => {
+	let errors = validationResult(req);
+	if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+	let hashedPassword = User.hashPassword(req.body.Password);
 	User.findOneAndUpdate({ Username: req.params.name }, { $set:
 		{
 			Username: req.body.Username,
-			Password: req.body.Password,
+			Password: hashedPassword,
 			Email: req.body.Email,
 			Birthday: req.body.Birthday
 		}
