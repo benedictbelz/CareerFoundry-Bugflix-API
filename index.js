@@ -39,17 +39,7 @@ app.get('/', (req, res) => {
 });
 
 // GET A LIST OF ALL MOVIES
-/* app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Movie.find()
-		.then(movies => {
-			res.status(201).json(movies);
-		})
-		.catch(error => {
-			console.error(error);
-      		res.status(500).send('Error: ' + error);
-		})
-}); */
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Movie.find()
 		.then(movies => {
 			res.status(201).json(movies);
