@@ -43,17 +43,14 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 	Movie.find()
 		.then(movies => {
 
-			const newMovies;
-
-			movies.forEach(movie => {
+			/* movies.forEach(movie => {
 				const directorId = movie.Director;
 				const genreId = movie.Genre;
 				movie.Director = Director.findOne({ _id: directorId });
 				movie.Genre = Genre.findOne({ _id: genreId });
-				newMovies.push(movie);
-			})
+			}) */
 
-			res.status(201).json(newMovies);
+			res.status(201).json(movies);
 		})
 		.catch(error => {
 			console.error(error);
