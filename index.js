@@ -62,6 +62,18 @@ app.get('/movies/:name', passport.authenticate('jwt', { session: false }), (req,
     	});
 });
 
+// GET A LIST OF ALL GENRES
+app.get('/genres', passport.authenticate('jwt', { session: false }), (req, res) => {
+	Genre.find()
+		.then(genres => {
+			res.status(201).json(genres);
+		})
+		.catch(error => {
+			console.error(error);
+      		res.status(500).send('Error: ' + error);
+		})
+});
+
 // GET INFORMATION ABOUT ONE GENRE
 app.get('/genres/:name', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Genre.findOne({ Name: req.params.name })
@@ -72,6 +84,18 @@ app.get('/genres/:name', passport.authenticate('jwt', { session: false }), (req,
       		console.error(error);
       		res.status(500).send('Error: ' + error);
     	});
+});
+
+// GET A LIST OF ALL DIRECTORS
+app.get('/directors', passport.authenticate('jwt', { session: false }), (req, res) => {
+	Director.find()
+		.then(directors => {
+			res.status(201).json(directors);
+		})
+		.catch(error => {
+			console.error(error);
+      		res.status(500).send('Error: ' + error);
+		})
 });
 
 // GET INFORMATION ABOUT ONE DIRECTOR
