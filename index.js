@@ -62,6 +62,24 @@ app.get('/movies/:name', passport.authenticate('jwt', { session: false }), (req,
     	});
 });
 
+// UPDATE IMAGE PATH
+app.post('/movies/:name', passport.authenticate('jwt', { session: false }), (req, res) => {
+	Movie.findOneAndUpdate({ Username: req.params.name }, { $set:
+		{
+			ImagePath: req.body.ImagePath,
+		}
+	},
+	{ new: true },
+	(error, updatedUser) => {
+		if (error) {
+			console.error(error);
+			res.status(500).send('Error: ' + error);
+		} else {
+			res.json(updatedUser);
+		}
+	  });
+});
+
 // GET A LIST OF ALL GENRES
 app.get('/genres', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Genre.find()
