@@ -64,18 +64,18 @@ app.get('/movies/:name', passport.authenticate('jwt', { session: false }), (req,
 
 // UPDATE IMAGE PATH
 app.post('/movies/:name', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Movie.findOneAndUpdate({ Username: req.params.name }, { $set:
+	Movie.findOneAndUpdate({ Title: req.params.name }, { $set:
 		{
 			ImagePath: req.body.ImagePath,
 		}
 	},
 	{ new: true },
-	(error, updatedUser) => {
+	(error, updatedMovie) => {
 		if (error) {
 			console.error(error);
 			res.status(500).send('Error: ' + error);
 		} else {
-			res.json(updatedUser);
+			res.json(updatedMovie);
 		}
 	  });
 });
