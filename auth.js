@@ -12,6 +12,10 @@ const generateJWTToken = user => {
 	});
 };
 
+/**
+ * Generate JWT token
+ * @param {*} router 
+ */
 module.exports = router => {
 	router.post('/login', (req, res) => {
 		passport.authenticate(
